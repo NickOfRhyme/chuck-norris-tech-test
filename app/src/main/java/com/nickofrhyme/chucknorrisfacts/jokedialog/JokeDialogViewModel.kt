@@ -1,4 +1,4 @@
-package com.nickofrhyme.chucknorrisfacts.mainscreen
+package com.nickofrhyme.chucknorrisfacts.jokedialog
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

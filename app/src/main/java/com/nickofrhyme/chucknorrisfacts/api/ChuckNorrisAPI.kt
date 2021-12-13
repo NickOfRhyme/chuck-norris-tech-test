@@ -8,4 +8,7 @@ interface ChuckNorrisAPI {
     @GET("jokes/random")
     suspend fun getRandomJoke(@Query("exclude") exclude: String = "[explicit]"): JokeRaw
 
+    @GET("jokes/random/20")
+    suspend fun getRandomJokes(@Query("exclude") exclude: String = "[explicit]"): JokeListRaw
+
 }

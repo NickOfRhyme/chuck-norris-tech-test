@@ -15,6 +15,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Get a joke" />
+        <Button
+            android:id="@+id/getJokesButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Get a list of jokes" />
         <CheckBox
             android:id="@+id/explicitCheckBox"
             android:layout_width="wrap_content"

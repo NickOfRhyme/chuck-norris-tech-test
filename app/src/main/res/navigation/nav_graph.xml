@@ -9,5 +9,13 @@
         android:id="@+id/main_screen"
         android:name="com.nickofrhyme.chucknorrisfacts.mainscreen.MainScreenFragment"
         android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" />
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_main_screen_to_factListScreen"
+            app:destination="@id/factListScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/factListScreen"
+        android:name="com.nickofrhyme.chucknorrisfacts.factlistscreen.FactListScreen"
+        android:label="fragment_fact_list_screen" />
 </navigation>

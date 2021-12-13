@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.nickofrhyme.chucknorrisfacts.R
 import com.nickofrhyme.chucknorrisfacts.databinding.FragmentMainScreenBinding
+import com.nickofrhyme.chucknorrisfacts.jokedialog.JokeDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-
+import dagger.hilt.android.scopes.FragmentScoped
+import javax.inject.Singleton
 
 @AndroidEntryPoint
 class MainScreenFragment : Fragment() {
@@ -24,6 +28,8 @@ class MainScreenFragment : Fragment() {
         binding = FragmentMainScreenBinding.inflate(inflater, container, false)
 
         binding.getJokeButton.setOnClickListener { openJokeDialog(viewModel.includeExplicit.value) }
+
+        binding.getJokesButton.setOnClickListener { viewModel.navigateToJokeList() }
 
         binding.explicitCheckBox.setOnCheckedChangeListener { _, isChecked ->
             viewModel.toggleExplicit(isChecked)
