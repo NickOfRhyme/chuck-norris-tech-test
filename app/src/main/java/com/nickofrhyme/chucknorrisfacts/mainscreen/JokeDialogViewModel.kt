@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nickofrhyme.chucknorrisfacts.api.ChuckNorrisAPI
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,9 +17,12 @@ class JokeDialogViewModel @Inject constructor(
     private val _joke = MutableLiveData<String>()
     val joke: LiveData<String> = _joke
 
-    fun getJoke() {
+    fun getJoke(includeExplicit: Boolean) {
         viewModelScope.launch {
-            val jokeString = chuckNorrisAPI.getRandomJoke().value.joke
+
+            val apiQuery = if (includeExplicit) "[]" else "[explicit]"
+
+            val jokeString = chuckNorrisAPI.getRandomJoke(apiQuery).value.joke
             _joke.value = jokeString
         }
     }
