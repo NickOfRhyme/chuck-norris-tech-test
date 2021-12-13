@@ -1,5 +1,6 @@
 package com.nickofrhyme.chucknorrisfacts.mainscreen
 
+import android.os.Bundle
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,9 +22,9 @@ class MainScreenViewModel @Inject constructor(
         _includeExplicit.value = (isChecked)
     }
 
-    fun navigateToJokeList() {
+    fun navigateToJokeList(args: Bundle) {
         navigationDispatcher.emit {  navController: NavController ->
-            navController.navigate(R.id.factListScreen)
+            navController.navigate(R.id.factListScreen, args)
         }
     }
 }

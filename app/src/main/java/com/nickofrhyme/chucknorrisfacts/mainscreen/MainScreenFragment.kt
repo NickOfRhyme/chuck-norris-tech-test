@@ -29,11 +29,12 @@ class MainScreenFragment : Fragment() {
 
         binding.getJokeButton.setOnClickListener { openJokeDialog(viewModel.includeExplicit.value) }
 
-        binding.getJokesButton.setOnClickListener { viewModel.navigateToJokeList() }
 
         binding.explicitCheckBox.setOnCheckedChangeListener { _, isChecked ->
             viewModel.toggleExplicit(isChecked)
         }
+
+        binding.getJokesButton.setOnClickListener { openFactsList(viewModel.includeExplicit.value) }
 
         return binding.root
     }
@@ -46,6 +47,12 @@ class MainScreenFragment : Fragment() {
         dialog.arguments = args
 
         dialog.show(parentFragmentManager, "joke")
+    }
+
+    private fun openFactsList(includeExplicit: Boolean?) {
+        val args = Bundle()
+        args.putBoolean("includeExplicit", includeExplicit ?: false)
+        viewModel.navigateToJokeList(args)
     }
 
 

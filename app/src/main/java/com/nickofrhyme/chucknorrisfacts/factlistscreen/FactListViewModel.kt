@@ -20,12 +20,13 @@ class FactListViewModel @Inject constructor(
     val jokeList: LiveData<List<String>> = _jokeListLD
 
     init {
-        getJokes()
+        getJokes(false)
     }
 
-    fun getJokes() {
+    fun getJokes(includeExplicit: Boolean) {
         viewModelScope.launch {
-            val jokes = chuckNorrisAPI.getRandomJokes().value.map { it.joke }
+            val excludeQuery = if (includeExplicit) "[]" else "[explicit]"
+            val jokes = chuckNorrisAPI.getRandomJokes(excludeQuery).value.map { it.joke }
             updateList(jokes)
         }
     }

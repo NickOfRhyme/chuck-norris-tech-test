@@ -23,6 +23,9 @@ class FactListScreen : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        val includeExplicit = arguments?.getBoolean("includeExplicit") ?: false
+
         binding = FragmentFactListScreenBinding.inflate(inflater, container, false)
 
         val linearLayoutManager = LinearLayoutManager(context)
@@ -30,7 +33,11 @@ class FactListScreen : Fragment() {
         binding.recyclerView.layoutManager = linearLayoutManager
 
         viewModel.jokeList.observe(viewLifecycleOwner) {
-            binding.recyclerView.adapter = FactListRecyclerAdapter(viewModel.jokeList.value?.toList() ?: listOf("blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg", "blahg", "adgfadg"))
+            binding.recyclerView.adapter = FactListRecyclerAdapter(viewModel.jokeList.value?.toList() ?: emptyList())
+        }
+
+        binding.loadMoreButton.setOnClickListener {
+            viewModel.getJokes(includeExplicit)
         }
 
         return binding.root
