@@ -5,22 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.nickofrhyme.chucknorrisfacts.databinding.FragmentMainScreenBinding
 
 
-class MainScreen : Fragment() {
+class MainScreenFragment : Fragment() {
 
     private lateinit var binding: FragmentMainScreenBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMainScreenBinding.inflate(inflater, container, false)
 
         binding.getjokebutton.setOnClickListener { openJokeDialog() }
@@ -28,8 +24,9 @@ class MainScreen : Fragment() {
         return binding.root
     }
 
-    fun openJokeDialog() {
+    private fun openJokeDialog() {
         val dialog = JokeDialogFragment()
+//        viewModel.getJoke()
         dialog.show(parentFragmentManager, "joke")
     }
 
